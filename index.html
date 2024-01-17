@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimDra - Simple Drawing Game</title>
+    <link rel="icon" type="image/jpg" href="./sim.jpg">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #ecf0f1;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ecf0f1;
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            background-color: #34495e;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            z-index: 1;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+        footer {
+            margin-top: 20px;
+            color: #95a5a6;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="about.html">About</a>
+        <a href="mailto:anik333999@gmail.com">Contact</a>
+    </nav>
+    <h1>SimDra</h1>
+    <h3>Unleash Your Creativity with Simplicity</h3>
+    <a href="draw.html">
+        <button>Start Drawing</button>
+    </a>
+    <button onclick="showOptions()">Customize</button>
+    <a href="./help.html">
+        <button>Help</button>
+    </a>
+    <a href="./info.html">
+        <button>information</button>
+    </a>
+    <a href="./sup.html">
+        <button>support me</button>
+    </a>
+    <script>
+        function showOptions() {
+            // Redirect to options.html
+            window.location.href = 'options.html';
+        }
+    </script>
+<button onclick="home()">home</button>
+         <script>
+        function home() {
+            // Redirect to options.html
+           alert ("your in the home page") 
+        }
+    </script>
+    <footer>
+        &copy; 2023 SimDra Drawing Game. All rights reserved.
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimDra</title>
+    <link rel="icon" type="image/jpg" href="./sim.jpg">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #ffe1e1;
+        }
+        canvas {
+            display: block;
+            margin: auto;
+            background-color: rgb(0, 0, 0);
+            border: 2px solid #333;
+        }
+    </style>
+</head>
+<body>
+    
+    <canvas id="drawingCanvas"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set up canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let drawing = false;
+        let colorIndex = 0;
+        const colors = [
+            '#FF0000', '#00FF00', '#0000FF', '#FFA500',
+            '#800080', '#FFFF00', '#008080', '#FF6347',
+            '#8A2BE2', '#00CED1', '#FFD700', '#32CD32',
+            '#FF4500', '#4B0082', '#20B2AA', '#DAA520',
+            '#9932CC', '#00FFFF', '#FF69B4', '#8B4513',
+            '#800000', '#008000', '#000080', '#FF8C00',
+            '#FF1493', '#7CFC00', '#4169E1', '#A52A2A',
+            '#800000', '#4682B4', '#2E8B57', '#F08080',
+            '#9400D3', '#808000', '#8B008B', '#00FF7F',
+            '#DC143C', '#32CD32', '#191970', '#7B68EE',
+            '#3CB371', '#6B8E23', '#9932CC', '#8B4513',
+            '#CD853F', '#7B68EE', '#FA8072', '#00FA9A',
+            '#556B2F', '#9932CC', '#4B0082', '#8A2BE2',
+            '#FF69B4', '#8B4513', '#CD853F', '#7B68EE',
+            '#FA8072', '#00FA9A', '#556B2F', '#9932CC',
+            '#4B0082', '#8A2BE2', '#FF69B4', '#8B4513',
+            '#CD853F', '#7B68EE', '#FA8072', '#00FA9A',
+            '#556B2F', '#9932CC', '#4B0082', '#8A2BE2',
+            '#FF69B4', '#8B4513', '#CD853F', '#7B68EE',
+            '#FA8072', '#00FA9A', '#556B2F', '#9932CC',
+            '#4B0082', '#8A2BE2', '#FF69B4', '#8B4513',
+            '#CD853F', '#7B68EE', '#FA8072', '#00FA9A',
+            '#556B2F', '#9932CC', '#4B0082', '#8A2BE2',
+            '#FF69B4', '#8B4513', '#CD853F', '#7B68EE',
+            '#FA8072', '#00FA9A', '#556B2F', '#9932CC',
+            '#4B0082', '#8A2BE2', '#FF69B4', '#8B4513'
+        ]; // Add more colors as needed
+
+        function startDrawing(e) {
+            drawing = true;
+            draw(e);
+        }
+
+        function stopDrawing() {
+            drawing = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!drawing) return;
+
+            ctx.lineWidth = 5;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = colors[colorIndex];
+
+            if (e.touches && e.touches[0]) {
+                ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY);
+            } else {
+                ctx.lineTo(e.clientX, e.clientY);
+            }
+
+            ctx.stroke();
+            ctx.beginPath();
+            if (e.touches && e.touches[0]) {
+                ctx.moveTo(e.touches[0].clientX, e.touches[0].clientY);
+            } else {
+                ctx.moveTo(e.clientX, e.clientY);
+            }
+        }
+
+        function changeColor() {
+            colorIndex = (colorIndex + 1) % colors.length;
+        }
+
+        setInterval(changeColor, 1000); // Change color every 1 second
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('touchstart', startDrawing);
+
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseleave', stopDrawing);
+        canvas.addEventListener('touchend', stopDrawing);
+
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('touchmove', draw);
+
+        // Prevent scrolling on touch devices
+        document.body.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        });
+
+        // Resize canvas when the window is resized
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
