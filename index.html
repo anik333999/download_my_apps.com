@@ -6,6 +6,14 @@
     <title>SimDra - Simple Drawing Game</title>
     <link rel="icon" type="image/jpg" href="./sim.jpg">
     <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  cursor: none;
+}
+
         body {
             margin: 0;
             padding: 0;
@@ -64,6 +72,30 @@
             color: #95a5a6;
             text-align: center;
         }
+        .inner-cursor {
+  position: fixed;
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  background: white;
+  mix-blend-mode: difference;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: width 0.5s height 0.5s;
+}
+        .outer-cursor {
+  position: fixed;
+  left: 10px;
+  width: 25px;
+  height: 25px;
+  transform: translate(-50%, -50%);
+  border: 1px solid white;
+  mix-blend-mode: difference;
+  border-radius: 50%;
+  pointer-events: 0.1ms;
+  transition: 0.1s;
+}
     </style>
 </head>
 <body>
@@ -90,18 +122,30 @@
         <button>download</button>
     </a>
     <script>
+        let innerCursor = document.querySelector(".inner-cursor");
+let outerCursor = document.querySelector(".outer-cursor");
+
+document.addEventListener("mousemove", moveCursor);
+
+function moveCursor(e) {
+  let x = e.clientX;
+  let y = e.clientY;
+
+  innerCursor.style.left = `${x}px`;
+  innerCursor.style.top = `${y}px`;
+  outerCursor.style.left = `${x}px`;
+  outerCursor.style.top = `${y}px`;
+}
         function showOptions() {
             // Redirect to options.html
             window.location.href = 'options.html';
         }
-    </script>
-<button onclick="home()">home</button>
-         <script>
-        function home() {
+         function home() {
             // Redirect to options.html
            alert ("your in the home page") 
         }
     </script>
+<button onclick="home()">home</button>
     <footer>
         &copy; 2023 SimDra Drawing Game. All rights reserved.
     </footer>
